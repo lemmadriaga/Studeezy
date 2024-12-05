@@ -1,0 +1,245 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Logo Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:strokeWidth="2dp"
+            android:backgroundTint="#F9E21D"
+            app:strokeColor="@color/black">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="App Logo"
+                android:src="@drawable/logo"
+            android:padding="8dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="File Upload"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Campus Spinner -->
+        <TextView
+            android:id="@+id/label_campus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Campus"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark"
+            app:hintEnabled="false">
+
+            <Spinner
+                android:id="@+id/spinner_campus"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/border" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Course Spinner -->
+        <TextView
+            android:id="@+id/label_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark"
+            app:hintEnabled="false">
+
+            <Spinner
+                android:id="@+id/spinner_course"
+                android:layout_width="match_parent"
+
+                android:background="@drawable/border"
+                android:layout_height="49dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Year Spinner -->
+        <TextView
+            android:id="@+id/label_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Year"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark"
+            app:hintEnabled="false">
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/border" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Semester Spinner -->
+        <TextView
+            android:id="@+id/label_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semester"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark"
+            app:hintEnabled="false">
+
+            <Spinner
+                android:id="@+id/spinner_semester"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/border" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/label_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark"
+            app:hintEnabled="false">
+
+            <Spinner
+                android:id="@+id/spinner_subject"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+
+                android:background="@drawable/border" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- File Name Input -->
+        <TextView
+            android:id="@+id/label_filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Name"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:boxStrokeColor="@color/primaryDark">
+
+            <EditText
+                android:id="@+id/input_filename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter file name"
+                android:textColor="@color/primaryDark"
+                android:textColorHint="@color/primaryLight"
+                android:inputType="text"
+                android:background="@drawable/border"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- File Selector -->
+        <TextView
+            android:id="@+id/display_filename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No file selected"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <!-- Buttons Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upload_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:text="Select File"
+                app:cornerRadius="8dp"
+                android:backgroundTint="@color/black"
+                android:textColor="#F9E21D" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Submit"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#F9E21D"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

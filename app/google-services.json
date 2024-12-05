@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "785182985382",
+    "firebase_url": "https://mob-com-ff38b-default-rtdb.firebaseio.com",
+    "project_id": "mob-com-ff38b",
+    "storage_bucket": "mob-com-ff38b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785182985382:android:e504d6a69f0dc048797867",
+        "android_client_info": {
+          "package_name": "com.example.studeezy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM0YktoT8EPuRWh-fzEO0eKbrfrm23svE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

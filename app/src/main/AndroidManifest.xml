@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.studeezy">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Studeezy"
+        tools:targetApi="31">
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PaymentProcess"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".fileUpload.FileUpload"
+            android:exported="false" />
+        <activity
+            android:name=".userDashboard.SubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userDashboard.CourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".renderFile.FileRender"
+            android:exported="false" />
+        <activity
+            android:name=".userAuth.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".userAuth.Login"
+            android:exported="false" />
+        <activity
+            android:name=".userDashboard.Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
