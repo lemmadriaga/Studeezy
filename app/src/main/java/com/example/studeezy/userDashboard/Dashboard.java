@@ -57,6 +57,7 @@ public class Dashboard extends AppCompatActivity {
     private CircleImageView imageViewProfile;
     private androidx.cardview.widget.CardView cardPremiumStatus;
     private static final int PICK_IMAGE_REQUEST = 1;
+    private TextView textPremiumBenefits;
 
 
     @Override
@@ -73,7 +74,7 @@ public class Dashboard extends AppCompatActivity {
             return;
         }
 
-        syncNameFromFirestoreToRealtimeDatabase(); // Call the method here
+        syncNameFromFirestoreToRealtimeDatabase();
 
         userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
 
@@ -87,11 +88,14 @@ public class Dashboard extends AppCompatActivity {
         initializeViews();
         loadProfilePicture();
 
+
     }
 
 
     private void initializeViews() {
+
         textPremiumStatus = findViewById(R.id.textPremiumStatus);
+        textPremiumBenefits = findViewById(R.id.textPremiumBenefits);
         buttonUpgradeToPremium = findViewById(R.id.buttonUpgradeToPremium);
         buttonSignOut = findViewById(R.id.btn_signout);
         buttonUpload = findViewById(R.id.btn_upload);
@@ -100,7 +104,7 @@ public class Dashboard extends AppCompatActivity {
         campusListView = findViewById(R.id.campusListView);
         editTextSearch = findViewById(R.id.editTextSearch);
         imageViewProfile = findViewById(R.id.imageView);
-        cardPremiumStatus = findViewById(R.id.cardPremiumStatus); // Add this line
+        cardPremiumStatus = findViewById(R.id.cardPremiumStatus);
     }
 
 
@@ -189,12 +193,12 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    campusList.clear(); // Clear the list before adding new data
+                    campusList.clear();
                     for (DataSnapshot campusSnapshot : snapshot.getChildren()) {
-                        String campusName = campusSnapshot.getKey(); // Get the key (campus name)
-                        campusList.add(campusName.replace('_', ' ')); // Replace underscores with spaces for better display
+                        String campusName = campusSnapshot.getKey();
+                        campusList.add(campusName.replace('_', ' '));
                     }
-                    adapter.notifyDataSetChanged(); // Notify the adapter to update the ListView
+                    adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(Dashboard.this, "No campuses available.", Toast.LENGTH_SHORT).show();
                 }
@@ -219,22 +223,22 @@ public class Dashboard extends AppCompatActivity {
 
         String userId = currentUser.getUid();
 
-        // Firestore reference
+
         DocumentReference firestoreUserRef = firestore.collection("users").document(userId);
 
-        // Realtime Database reference
+
         DatabaseReference realtimeUserRef = realtimeDatabase.getReference("users").child(userId);
 
-        // Fetch name from Firestore
+
         firestoreUserRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 DocumentSnapshot document = task.getResult();
 
                 if (document.exists()) {
-                    String name = document.getString("name"); // Ensure Firestore has a `name` field
+                    String name = document.getString("name");
 
                     if (name != null) {
-                        // Update Realtime Database
+
                         realtimeUserRef.child("name").setValue(name).addOnCompleteListener(updateTask -> {
                             if (updateTask.isSuccessful()) {
                                 Log.d("Sync", "Name successfully synced to Realtime Database");
@@ -263,7 +267,7 @@ public class Dashboard extends AppCompatActivity {
                     Boolean hasPremium = dataSnapshot.child("hasPremium").getValue(Boolean.class);
                     Long expirationDate = dataSnapshot.child("expirationDate").getValue(Long.class);
 
-                    cardPremiumStatus.setVisibility(View.VISIBLE); // Make the card visible
+                    cardPremiumStatus.setVisibility(View.VISIBLE);
 
                     if (hasPremium != null && hasPremium) {
                         if (expirationDate != null) {
@@ -273,56 +277,37 @@ public class Dashboard extends AppCompatActivity {
                                 textPremiumStatus.setText("Premium expires in " + daysLeft + " days");
                                 textPremiumStatus.setVisibility(View.VISIBLE);
                                 buttonUpgradeToPremium.setVisibility(View.GONE);
-
-                                // Disable the payment button
-                                buttonPayment.setEnabled(false);
-                                buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.gray)); // Set disabled color
+                                textPremiumBenefits.setVisibility(View.GONE);
                             } else {
                                 textPremiumStatus.setText("Your premium has expired.");
                                 textPremiumStatus.setVisibility(View.VISIBLE);
                                 buttonUpgradeToPremium.setVisibility(View.VISIBLE);
-
-                                // Enable the payment button
-                                buttonPayment.setEnabled(true);
-                                buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.black)); // Set enabled color
+                                textPremiumBenefits.setVisibility(View.VISIBLE);
                             }
                         } else {
                             textPremiumStatus.setText("Your premium status could not be verified.");
                             textPremiumStatus.setVisibility(View.VISIBLE);
                             buttonUpgradeToPremium.setVisibility(View.VISIBLE);
-
-                            // Enable the payment button
-                            buttonPayment.setEnabled(true);
-                            buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.black)); // Set enabled color
+                            textPremiumBenefits.setVisibility(View.VISIBLE);
                         }
                     } else {
                         textPremiumStatus.setVisibility(View.GONE);
                         buttonUpgradeToPremium.setVisibility(View.VISIBLE);
-
-                        // Enable the payment button
-                        buttonPayment.setEnabled(true);
-                        buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.black)); // Set enabled color
+                        textPremiumBenefits.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    cardPremiumStatus.setVisibility(View.GONE); // Hide the card if user data doesn't exist
-
-                    // Enable the payment button by default if user data doesn't exist
-                    buttonPayment.setEnabled(true);
-                    buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.black)); // Set enabled color
+                    cardPremiumStatus.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 Log.e("Dashboard", "Error checking premium status: " + error.getMessage());
-                cardPremiumStatus.setVisibility(View.GONE); // Hide the card in case of error
-
-                // Enable the payment button by default in case of error
-                buttonPayment.setEnabled(true);
-                buttonPayment.setBackgroundTintList(getResources().getColorStateList(R.color.black)); // Set enabled color
+                cardPremiumStatus.setVisibility(View.GONE);
             }
         });
     }
+
 
     private void loadProfilePicture() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -339,12 +324,12 @@ public class Dashboard extends AppCompatActivity {
                         String base64Image = document.getString("profilePicture");
 
                         if (base64Image != null && !base64Image.isEmpty()) {
-                            // Decode Base64 and set to ImageView
+
                             byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
                             Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
                             imageViewProfile.setImageBitmap(bitmap);
                         } else {
-                            // Set default profile picture
+
                             imageViewProfile.setImageResource(R.drawable.default_profile);
                         }
                     } else {
@@ -371,12 +356,12 @@ public class Dashboard extends AppCompatActivity {
             Uri imageUri = data.getData();
 
             try {
-                // Convert image to Base64
+
                 InputStream inputStream = getContentResolver().openInputStream(imageUri);
-                byte[] bytes = IOUtils.toByteArray(inputStream); // Apache Commons IO library
+                byte[] bytes = IOUtils.toByteArray(inputStream);
                 String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
 
-                // Save to Firestore
+
                 uploadProfilePicture(base64Image);
 
             } catch (IOException e) {

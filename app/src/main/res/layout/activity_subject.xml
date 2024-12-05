@@ -7,16 +7,14 @@
     android:background="@color/white"
     android:padding="16dp">
 
-    <!-- Header Section -->
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingBottom="16dp">
 
-        <!-- Logo -->
-        <ImageView
+                <ImageView
             android:id="@+id/logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -24,8 +22,7 @@
             android:contentDescription="App Logo"
             android:layout_marginEnd="16dp" />
 
-        <!-- Title -->
-        <TextView
+                <TextView
             android:id="@+id/tv_course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,15 +34,13 @@
             android:textColor="#F9E21D" />
     </LinearLayout>
 
-    <!-- Divider -->
-    <View
+        <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
         android:layout_marginBottom="16dp" />
 
-    <!-- Expandable ListView -->
-    <ExpandableListView
+        <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

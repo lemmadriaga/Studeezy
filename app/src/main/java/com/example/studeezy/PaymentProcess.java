@@ -38,7 +38,7 @@ public class PaymentProcess extends AppCompatActivity {
                         .post(body)
                         .addHeader("accept", "application/json")
                         .addHeader("content-type", "application/json")
-                        .addHeader("authorization", "Basic c2tfdGVzdF9kQ2VtbmhpZE5Xd05UeHFhVWkyWVFjRVI6") // Replace with your encoded key
+                        .addHeader("authorization", "Basic c2tfdGVzdF9kQ2VtbmhpZE5Xd05UeHFhVWkyWVFjRVI6")
                         .build();
 
                 Response response = client.newCall(request).execute();
@@ -47,10 +47,10 @@ public class PaymentProcess extends AppCompatActivity {
                     String responseBody = response.body().string();
                     Log.d(TAG, "Payment link created: " + responseBody);
 
-                    // Parse the response to get `checkout_url`
+
                     String checkoutUrl = extractCheckoutUrl(responseBody);
 
-                    // Open WebViewActivity with the checkout URL
+
                     if (checkoutUrl != null) {
                         Intent intent = new Intent(PaymentProcess.this, WebViewActivity.class);
                         intent.putExtra("url", checkoutUrl);
@@ -72,7 +72,7 @@ public class PaymentProcess extends AppCompatActivity {
 
     private String extractCheckoutUrl(String responseBody) {
         try {
-            // Parse the JSON response to extract the `checkout_url`
+
             JSONObject jsonObject = new JSONObject(responseBody);
             return jsonObject.getJSONObject("data")
                     .getJSONObject("attributes")

@@ -93,6 +93,7 @@ public class SignUp extends AppCompatActivity {
         userMap.put("name", name);
         userMap.put("created_at", System.currentTimeMillis());
         userMap.put("hasPremium", false);
+        userMap.put("role", "user");
 
         firestore.collection("users").document(userId).set(userMap)
                 .addOnSuccessListener(aVoid -> {
@@ -104,6 +105,7 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(SignUp.this, "Failed to save user: " + errorMessage, Toast.LENGTH_LONG).show();
                 });
     }
+
 
     private void navigateToDashboard() {
         Intent intent = new Intent(SignUp.this, Dashboard.class);

@@ -14,19 +14,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth; // Declare mAuth
+    private FirebaseAuth mAuth; 
     Button proceedButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Firebase explicitly
+        
         FirebaseApp.initializeApp(this);
 
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance(); // Initialize FirebaseAuth here
+        mAuth = FirebaseAuth.getInstance(); 
 
         proceedButton = findViewById(R.id.btn_proceed);
 

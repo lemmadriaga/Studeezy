@@ -36,7 +36,7 @@ public class CourseActivity extends AppCompatActivity {
         selectedCampus = getIntent().getStringExtra("campus");
 
         mDatabase = FirebaseDatabase.getInstance();
-        mCoursesRef = mDatabase.getReference().child("campuses").child(selectedCampus.replace(" ", "_")).child("courses");  // Use campus name with underscores for DB path
+        mCoursesRef = mDatabase.getReference().child("campuses").child(selectedCampus.replace(" ", "_")).child("courses");
 
         courseListView = findViewById(R.id.courseListView);
         courseList = new ArrayList<>();
@@ -51,9 +51,9 @@ public class CourseActivity extends AppCompatActivity {
                 String selectedCourse = courseList.get(position);
 
                 Intent intent = new Intent(CourseActivity.this, SubjectActivity.class);
-                intent.putExtra("campus", selectedCampus);  // Pass campus
-                intent.putExtra("course", selectedCourse);  // Pass selected course
-                startActivity(intent);  // Start the activity
+                intent.putExtra("campus", selectedCampus);
+                intent.putExtra("course", selectedCourse);
+                startActivity(intent);
             }
         });
     }

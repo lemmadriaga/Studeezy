@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow_primary">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"
+       />
+
+
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppinsreg"
+        android:text="Success starts with the effort you put into&#10;learning today"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:singleLine="false"
+        android:ellipsize="none"
+        android:lineSpacingExtra="4dp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

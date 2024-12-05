@@ -11,8 +11,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Logo Section -->
-        <com.google.android.material.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,8 +30,7 @@
             android:padding="8dp" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Page Title -->
-        <TextView
+                <TextView
             android:id="@+id/pageTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,8 +42,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Campus Spinner -->
-        <TextView
+                <TextView
             android:id="@+id/label_campus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,8 +65,7 @@
                 android:background="@drawable/border" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Course Spinner -->
-        <TextView
+                <TextView
             android:id="@+id/label_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,8 +90,7 @@
                 android:layout_height="49dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Year Spinner -->
-        <TextView
+                <TextView
             android:id="@+id/label_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,8 +114,7 @@
                 android:background="@drawable/border" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Semester Spinner -->
-        <TextView
+                <TextView
             android:id="@+id/label_semester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -173,8 +167,7 @@
                 android:background="@drawable/border" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- File Name Input -->
-        <TextView
+                <TextView
             android:id="@+id/label_filename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,8 +194,7 @@
                 android:background="@drawable/border"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- File Selector -->
-        <TextView
+                <TextView
             android:id="@+id/display_filename"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -212,8 +204,7 @@
             android:gravity="center"
             android:layout_marginTop="8dp" />
 
-        <!-- Buttons Section -->
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

@@ -8,6 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.studeezy.AdminDashboard;
 import com.example.studeezy.R;
 
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
     Button buttonLogin;
@@ -80,12 +82,12 @@ public class Login extends AppCompatActivity {
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
 
-                if(TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(email)) {
                     Toast.makeText(Login.this, "Enter email", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(TextUtils.isEmpty(password)) {
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText(Login.this, "Enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -95,17 +97,40 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-                                    startActivity(intent);
-                                    finish();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        String userId = user.getUid();
+                                        FirebaseFirestore.getInstance().collection("users")
+                                                .document(userId)
+                                                .get()
+                                                .addOnSuccessListener(documentSnapshot -> {
+                                                    if (documentSnapshot.exists() && documentSnapshot.contains("role")) {
+                                                        String role = documentSnapshot.getString("role");
+                                                        if ("admin".equals(role)) {
+
+                                                            Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                                                            startActivity(intent);
+                                                        } else {
+
+                                                            Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                                                            startActivity(intent);
+                                                        }
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(Login.this, "Role not found. Please contact support.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(Login.this, "Failed to retrieve role: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                });
+                                    }
                                 } else {
-                                    Toast.makeText(Login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             }
         });
+
     }
 }

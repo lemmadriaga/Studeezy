@@ -9,8 +9,7 @@
     android:background="@color/white"
     tools:context=".userDashboard.Dashboard">
 
-    <!-- Header Section -->
-    <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,11 +80,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Premium Status Card -->
-    <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
         android:id="@+id/cardPremiumStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_margin="16dp"
         android:padding="16dp"
         app:cardElevation="4dp"
@@ -93,33 +92,58 @@
         app:layout_constraintTop_toBottomOf="@id/headerSection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"> <!-- Set to GONE by default -->
-
-
+        android:visibility="gone"> 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <!-- Premium Status Text -->
+            <TextView
+                android:id="@+id/textPremiumTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unlock Premium Benefits"
+                android:fontFamily="@font/poppinsbold"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/textPremiumStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppinsbold"
+                android:layout_marginBottom="12dp"
                 android:text="Premium expires in X days"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:visibility="gone" />
 
-            <!-- Upgrade Button -->
-            <com.google.android.material.button.MaterialButton
+            <TextView
+                android:id="@+id/textPremiumBenefits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsreg"
+                android:text="Enjoy unlimited access to premium features like:\n\n• Download unlimited modules\n• Access exclusive content\n• Priority support"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/gray"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:visibility="gone" />
+
+
+                        <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonUpgradeToPremium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppinsbold"
+                android:layout_marginTop="12dp"
+                android:textSize="20sp"
                 android:layout_marginBottom="20dp"
                 android:text="Upgrade to Premium"
                 android:backgroundTint="@color/black"
@@ -128,8 +152,8 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Search Input -->
-    <com.google.android.material.textfield.TextInputLayout
+
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -137,6 +161,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         app:boxBackgroundColor="@color/white"
+        android:background="@drawable/search_bar_background"
         app:boxCornerRadiusBottomEnd="8dp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopEnd="8dp"
@@ -160,8 +185,7 @@
             android:textColorHint="@color/gray" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Available Campuses Title -->
-    <TextView
+        <TextView
         android:id="@+id/textViewCampusListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -174,8 +198,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearch" />
 
-    <!-- Campuses List -->
-    <ListView
+        <ListView
         android:id="@+id/campusListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -186,8 +209,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewCampusListTitle" />
 
-    <!-- Bottom Buttons -->
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -203,6 +225,7 @@
             android:id="@+id/btn_payment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsreg"
             android:layout_weight="1"
             android:backgroundTint="@color/black"
             android:padding="12dp"
@@ -218,6 +241,7 @@
             android:layout_marginStart="8dp"
             android:backgroundTint="#F9E21D"
             android:padding="12dp"
+            android:fontFamily="@font/poppinsreg"
             android:text="Upload"
             android:textColor="@color/black"
             app:cornerRadius="8dp" />
@@ -225,6 +249,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_signout"
             android:layout_width="0dp"
+            android:fontFamily="@font/poppinsreg"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"

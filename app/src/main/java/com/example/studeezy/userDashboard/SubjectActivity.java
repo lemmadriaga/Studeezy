@@ -93,17 +93,17 @@ public class SubjectActivity extends AppCompatActivity {
                         List<String> semesterSubjects = new ArrayList<>();
 
                         for (DataSnapshot semesterSnapshot : semestersSnapshot.getChildren()) {
-                            String semesterName = semesterSnapshot.getKey(); // e.g. "1st_Semester"
-                            semesterName = semesterName.replace("_", " "); // Replace underscores with spaces
-                            semesterSubjects.add(semesterName); // Add semester name (non-clickable)
+                            String semesterName = semesterSnapshot.getKey(); 
+                            semesterName = semesterName.replace("_", " "); 
+                            semesterSubjects.add(semesterName); 
 
-                            // Add subjects for this semester
+                            
                             DataSnapshot subjectsSnapshot = semesterSnapshot.child("subjects");
                             for (DataSnapshot subjectSnapshot : subjectsSnapshot.getChildren()) {
                                 String subjectCode = subjectSnapshot.getKey();
                                 String subjectName = subjectSnapshot.getValue(String.class);
                                 String subject = subjectCode + " - " + subjectName;
-                                semesterSubjects.add(subject); // Add subject (clickable)
+                                semesterSubjects.add(subject); 
                             }
                         }
 

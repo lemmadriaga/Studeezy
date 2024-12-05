@@ -7,7 +7,7 @@
     android:background="#F9E21D"
     android:padding="16dp">
 
-    <!-- Header Section -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:gravity="center_vertical"
         android:paddingBottom="16dp">
 
-        <!-- Logo -->
+
         <ImageView
             android:id="@+id/logo"
             android:layout_width="50dp"
@@ -24,7 +24,7 @@
             android:contentDescription="App Logo"
             android:layout_marginEnd="16dp"/>
 
-        <!-- Title -->
+
         <TextView
             android:id="@+id/tv_campus_name"
             android:layout_width="wrap_content"
@@ -37,14 +37,14 @@
             android:textColor="@color/black" />
     </LinearLayout>
 
-    <!-- Divider -->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
         android:layout_marginBottom="16dp"/>
 
-    <!-- ListView for Courses -->
+
     <ListView
         android:id="@+id/courseListView"
         android:layout_width="match_parent"

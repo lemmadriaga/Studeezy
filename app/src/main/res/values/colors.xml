@@ -23,5 +23,15 @@
     <color name="gold">#FFD700</color>
     <color name="gold_dark">#FFB300</color>
 
+    <color name="purple_700">#3700B3</color>
+    <color name="yellow_primary">#F9E21D</color>
+
+
+
+
+    <color name="purple_200">#BB86FC</color>
+
+
+
 
 </resources>

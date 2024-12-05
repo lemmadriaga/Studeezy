@@ -8,7 +8,6 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -21,16 +20,26 @@
         android:theme="@style/Theme.Studeezy"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".AdminUserManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".WebViewActivity"
             android:exported="false" />
-
         <activity
             android:name=".PaymentProcess"
             android:exported="false" />
         <activity
             android:name=".PaymentActivity"
             android:exported="false" />
-
         <activity
             android:name=".fileUpload.FileUpload"
             android:exported="false" />
@@ -53,7 +62,7 @@
             android:name=".userDashboard.Dashboard"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

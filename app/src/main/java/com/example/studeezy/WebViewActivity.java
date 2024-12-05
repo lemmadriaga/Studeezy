@@ -30,8 +30,8 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                // Simulate successful payment when returning from the WebView
-                if (url.contains("success")) { // Assume the URL contains "success" on successful payment
+
+                if (url.contains("success")) {
                     updateUserPremiumStatus();
                 }
             }
@@ -46,7 +46,7 @@ public class WebViewActivity extends AppCompatActivity {
         String userId = auth.getCurrentUser().getUid();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-        // Set `hasPremium` to true and calculate expiration date (30 days from now)
+
         long expirationDate = System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000);
 
         userRef.child("hasPremium").setValue(true);
@@ -54,7 +54,7 @@ public class WebViewActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Premium status updated successfully.");
-                        // Redirect back to the dashboard
+
                         Intent intent = new Intent(WebViewActivity.this, Dashboard.class);
                         startActivity(intent);
                         finish();
