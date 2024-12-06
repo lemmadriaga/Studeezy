@@ -24,12 +24,6 @@ Studeezy was created to help freshmen and continuing students who find it challe
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/3.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/4.png)
 
-## Usage
-
-### How to Use Studeezy:
-- **Search for Resources**: Use the search bar to find specific study guides, notes, or reviewers.
-- **Upload Content**: Click on the “Upload” button and follow the instructions to add your materials.
-
 ---
 
 ## Business Model
