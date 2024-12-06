@@ -78,3 +78,10 @@ To pull and run the Studeezy project in Android Studio, follow these steps:
 - If there are any issues with Gradle sync or dependencies, you may need to check the **build.gradle** files and ensure that all necessary libraries are included.
 - You can also try **File > Invalidate Caches / Restart** if the IDE behaves unexpectedly.
 - If Firebase-related services (such as database connections or authentication) are not working, ensure that the `google-services.json` file is correctly placed in the `app/` folder of the project.
+
+---
+
+## Developers
+Lemuel Madriaga [CS3101]
+Clarence Zamora [CS3102]
+James Michael Magnaye [CS3102]
