@@ -31,7 +31,7 @@ Studeezy was created to help freshmen and continuing students who find it challe
 
 ## Getting Started
 
-To get started, visit the [Studeezy website](#) and sign up or log in to your account. Follow these steps to navigate and utilize the platform:
+Follow these steps to navigate and utilize the platform:
 
 1. **Sign Up/Login**: Register or log in to create your personalized profile.
 2. **Select School and Program**: Choose your school and program to access relevant content.
