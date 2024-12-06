@@ -11,7 +11,7 @@ public class LibraryFile {
     public LibraryFile(String base64, String uploaderId, String uploaderName, String filename) {
         this.base64 = base64;
         this.uploaderId = uploaderId;
-        this.uploaderName = uploaderName;  // Initialize this field
+        this.uploaderName = uploaderName;
         this.filename = filename;
     }
 
@@ -23,7 +23,7 @@ public class LibraryFile {
         return uploaderId;
     }
 
-    public String getUploaderName() {  // Add this getter
+    public String getUploaderName() {
         return uploaderName;
     }
 

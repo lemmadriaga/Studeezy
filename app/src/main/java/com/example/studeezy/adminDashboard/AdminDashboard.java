@@ -1,13 +1,16 @@
-package com.example.studeezy;
+package com.example.studeezy.adminDashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.studeezy.R;
+import com.example.studeezy.payment.User;
+import com.example.studeezy.payment.UserAdapter;
 import com.example.studeezy.userAuth.Login;
 
 import androidx.appcompat.app.AppCompatActivity;

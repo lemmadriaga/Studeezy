@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.studeezy.R;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 

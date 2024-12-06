@@ -107,7 +107,6 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
-
     private void navigateToDashboard() {
         Intent intent = new Intent(SignUp.this, Dashboard.class);
         startActivity(intent);

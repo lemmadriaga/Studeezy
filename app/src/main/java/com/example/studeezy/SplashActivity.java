@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.studeezy.R;
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -19,23 +17,18 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        
         ImageView logo = findViewById(R.id.logo);
         TextView tagline = findViewById(R.id.tagline);
-
         
         Animation fadeInLogo = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         Animation slideUpFadeInTagline = AnimationUtils.loadAnimation(this, R.anim.tagline_slide_up_fade_in);
 
-        
         logo.startAnimation(fadeInLogo);
-
         
         new Handler().postDelayed(() -> {
             tagline.setVisibility(TextView.VISIBLE);
             tagline.startAnimation(slideUpFadeInTagline);
-        }, 1000); 
-
+        }, 1000);
         
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);

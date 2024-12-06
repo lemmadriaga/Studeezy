@@ -38,13 +38,11 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryV
         holder.filenameTextView.setText(file.getFilename());
         holder.uploaderTextView.setText("Uploader: " + file.getUploaderName());
 
-        // Set click listener for the file name to show PDF preview dialog
         holder.filenameTextView.setOnClickListener(v -> {
             // Decode the base64 string to byte array
             byte[] decodedBytes = Base64.decode(file.getBase64(), Base64.NO_WRAP);
 
-            // Call showPdfPreviewDialog to display the preview
-            ((Library) context).showPdfPreviewDialog(decodedBytes);  // Now you can use 'context'
+            ((Library) context).showPdfPreviewDialog(decodedBytes);
         });
     }
 

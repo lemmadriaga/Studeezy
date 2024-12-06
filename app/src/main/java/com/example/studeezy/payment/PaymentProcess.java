@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.util.Log;
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studeezy.R;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -16,7 +18,6 @@ import okhttp3.Response;
 public class PaymentProcess extends AppCompatActivity {
 
     private static final String TAG = "PaymentProcess";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +73,6 @@ public class PaymentProcess extends AppCompatActivity {
 
     private String extractCheckoutUrl(String responseBody) {
         try {
-
             JSONObject jsonObject = new JSONObject(responseBody);
             return jsonObject.getJSONObject("data")
                     .getJSONObject("attributes")

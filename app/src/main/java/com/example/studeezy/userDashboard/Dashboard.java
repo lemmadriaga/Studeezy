@@ -28,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.studeezy.R;
 import com.example.studeezy.fileUpload.FileUpload;
-import com.example.studeezy.PaymentActivity;
+import com.example.studeezy.payment.PaymentActivity;
 import com.example.studeezy.userAuth.Login;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity {
+
     private TextView textPremiumStatus, textViewGreeting;
     private MaterialButton buttonSignOut, buttonUpload, buttonPayment, buttonUpgradeToPremium, buttonCalculator, buttonLibrary;
     private FirebaseAuth mAuth;
@@ -417,7 +418,6 @@ public class Dashboard extends AppCompatActivity {
     }
 
     private void redeemPremium() {
-        // Step 1: Check if user has premium status in Realtime Database
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -425,10 +425,8 @@ public class Dashboard extends AppCompatActivity {
                     Boolean hasPremium = dataSnapshot.child("hasPremium").getValue(Boolean.class);
 
                     if (hasPremium != null && hasPremium) {
-                        // Step 2: If already a premium user, show a toast
                         Toast.makeText(Dashboard.this, "There is an existing subscription", Toast.LENGTH_SHORT).show();
                     } else {
-                        // Step 3: If not premium, check points in Firestore
                         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
                         String userId = FirebaseAuth.getInstance().getUid();
 
@@ -443,14 +441,12 @@ public class Dashboard extends AppCompatActivity {
                                         Long points = document.getLong("points");
 
                                         if (points != null && points >= 15) {
-                                            // Step 4: Update Realtime Database with premium status and expiration date
                                             long expirationDate = System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000); // 30 days from now
                                             userRef.child("hasPremium").setValue(true);
                                             userRef.child("expirationDate").setValue(expirationDate)
                                                     .addOnCompleteListener(updateTask -> {
                                                         if (updateTask.isSuccessful()) {
                                                             Toast.makeText(Dashboard.this, "Premium activated!", Toast.LENGTH_SHORT).show();
-                                                            // Refresh the activity
                                                             userDocRef.update("points", 0);
                                                             restartActivity();
                                                         } else {
@@ -458,7 +454,6 @@ public class Dashboard extends AppCompatActivity {
                                                         }
                                                     });
                                         } else {
-                                            // Step 5: Set points to 0 and refresh the activity
                                             Toast.makeText(Dashboard.this, "Not enough points.", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
@@ -485,8 +480,8 @@ public class Dashboard extends AppCompatActivity {
     private void restartActivity() {
         new Handler().postDelayed(() -> {
             Intent intent = getIntent();
-            finish();  // Close the current activity
-            startActivity(intent);  // Restart the current activity
-        }, 2000);  // Delay for 2000 milliseconds (2 seconds)
+            finish();
+            startActivity(intent);
+        }, 2000);
     }
 }

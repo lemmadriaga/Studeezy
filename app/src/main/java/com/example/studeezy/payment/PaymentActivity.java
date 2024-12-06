@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import android.content.Intent;
 import android.os.Bundle;

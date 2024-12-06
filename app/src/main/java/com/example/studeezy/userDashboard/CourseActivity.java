@@ -23,12 +23,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CourseActivity extends AppCompatActivity {
+
     private FirebaseDatabase mDatabase;
     private DatabaseReference mCoursesRef;
     private ListView courseListView;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> courseList;
-    private Map<String, String> courseMap; // Map for course code to full name
+    private Map<String, String> courseMap;
     private String selectedCampus;
 
     @Override
@@ -43,7 +44,7 @@ public class CourseActivity extends AppCompatActivity {
 
         courseListView = findViewById(R.id.courseListView);
         courseList = new ArrayList<>();
-        courseMap = new HashMap<>();  // Initialize the map
+        courseMap = new HashMap<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courseList);
         courseListView.setAdapter(adapter);
 
@@ -55,7 +56,6 @@ public class CourseActivity extends AppCompatActivity {
                 String selectedCourseName = courseList.get(position); // Get full course name
                 String selectedCourseCode = null;
 
-                // Find the course code corresponding to the selected full name
                 for (Map.Entry<String, String> entry : courseMap.entrySet()) {
                     if (entry.getValue().equals(selectedCourseName)) {
                         selectedCourseCode = entry.getKey();
@@ -65,8 +65,8 @@ public class CourseActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(CourseActivity.this, SubjectActivity.class);
                 intent.putExtra("campus", selectedCampus);
-                intent.putExtra("course", selectedCourseCode); // Pass course code
-                intent.putExtra("courseFullName", selectedCourseName); // Optionally pass full course name
+                intent.putExtra("course", selectedCourseCode);
+                intent.putExtra("courseFullName", selectedCourseName);
                 startActivity(intent);
             }
         });
@@ -77,15 +77,13 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 courseList.clear();
-                courseMap.clear(); // Clear previous mappings
+                courseMap.clear();
                 for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
                     String courseCode = courseSnapshot.getKey(); // e.g., "BSCS"
-                    String courseName = courseSnapshot.child("name").getValue(String.class); // Get the full name
+                    String courseName = courseSnapshot.child("name").getValue(String.class);
 
-                    // Add full course name to the list for display
                     courseList.add(courseName);
 
-                    // Store mapping from course code to full name
                     courseMap.put(courseCode, courseName);
                 }
                 adapter.notifyDataSetChanged();

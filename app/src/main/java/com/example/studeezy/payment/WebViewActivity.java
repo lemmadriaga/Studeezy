@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.studeezy.R;
 import com.example.studeezy.userDashboard.Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;

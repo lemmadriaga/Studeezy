@@ -29,22 +29,22 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".UserDetailsActivity"
+            android:name=".payment.UserDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminDashboard"
+            android:name=".adminDashboard.AdminDashboard"
             android:exported="false" />
         <activity
-            android:name=".AdminUserManagementActivity"
+            android:name=".adminDashboard.AdminUserManagementActivity"
             android:exported="false" />
         <activity
-            android:name=".WebViewActivity"
+            android:name=".payment.WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".PaymentProcess"
+            android:name=".payment.PaymentProcess"
             android:exported="false" />
         <activity
-            android:name=".PaymentActivity"
+            android:name=".payment.PaymentActivity"
             android:exported="false" />
         <activity
             android:name=".fileUpload.FileUpload"

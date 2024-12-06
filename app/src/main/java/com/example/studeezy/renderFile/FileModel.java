@@ -1,6 +1,7 @@
 package com.example.studeezy.renderFile;
 
 public class FileModel {
+
     private String fileName;
     private String fileBase64;
 

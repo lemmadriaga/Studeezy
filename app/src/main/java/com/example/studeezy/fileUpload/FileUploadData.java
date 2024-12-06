@@ -1,6 +1,7 @@
 package com.example.studeezy.fileUpload;
 
 public class FileUploadData {
+
     private String userId;  // Add userId field
     private String campus;
     private String course;

@@ -1,15 +1,15 @@
-package com.example.studeezy;
+package com.example.studeezy.adminDashboard;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studeezy.R;
+import com.example.studeezy.payment.User;
+import com.example.studeezy.payment.UserAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

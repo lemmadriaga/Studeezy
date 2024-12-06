@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 public class PaymentRequest {
     private PaymentData data;

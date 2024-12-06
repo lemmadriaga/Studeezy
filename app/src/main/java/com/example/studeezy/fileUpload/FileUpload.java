@@ -72,14 +72,13 @@ public class FileUpload extends AppCompatActivity {
         filePicker = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
             if (uri != null) {
                 try {
-                    // Encoding the selected file to base64
-                    fileBase64 = encodeFileToBase64(uri);  // This line encodes the file to base64
+                    fileBase64 = encodeFileToBase64(uri);
                     String fileName = getFileName(uri);
 
                     TextView displayFileName = findViewById(R.id.display_filename);
                     displayFileName.setText("Selected File: " + fileName);
 
-                    Log.d("FileUpload", "File Base64: " + fileBase64);  // Check if base64 content is properly set
+                    Log.d("FileUpload", "File Base64: " + fileBase64);
                     Toast.makeText(this, "File selected: " + fileName, Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     Log.e("FileUpload", "Error encoding file", e);
@@ -121,7 +120,7 @@ public class FileUpload extends AppCompatActivity {
         campusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) return; // Skip the first "Select" option
+                if (position == 0) return;
                 selectedCampus = parent.getItemAtPosition(position).toString();
                 fetchCourses(selectedCampus);
             }

@@ -1,6 +1,7 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 public class PaymentResponse {
+
     private PaymentData data;
 
     public PaymentData getData() {

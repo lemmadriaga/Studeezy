@@ -60,37 +60,30 @@ public class Library extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
-        // Initialize Firebase and Firestore
         auth = FirebaseAuth.getInstance();
         firestoreDb = FirebaseFirestore.getInstance();
 
-        // Initialize UI elements
         Button uploadButton = findViewById(R.id.upload_button);
         fileNameInput = findViewById(R.id.file_name_input);
         submitButton = findViewById(R.id.submit_button);
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.filesRecyclerView);
 
-        // Set RecyclerView properties
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fileList = new ArrayList<>();
 
-        // Initialize the RecyclerView adapter
-        adapter = new LibraryAdapter(this, fileList);  // Pass 'this' context to the adapter
+        adapter = new LibraryAdapter(this, fileList);
         recyclerView.setAdapter(adapter);
 
-        // Hide the file name input and submit button initially
         fileNameInput.setVisibility(View.GONE);
         submitButton.setVisibility(View.GONE);
 
-        // Initialize the file picker to choose a file
         filePicker = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
             if (uri != null) {
                 try {
-                    fileBase64 = encodeFileToBase64(uri);  // Encode file to Base64
+                    fileBase64 = encodeFileToBase64(uri);
                     Toast.makeText(this, "File selected successfully!", Toast.LENGTH_SHORT).show();
 
-                    // Show the file name input and submit button after file selection
                     fileNameInput.setVisibility(View.VISIBLE);
                     submitButton.setVisibility(View.VISIBLE);
                 } catch (IOException e) {
@@ -101,10 +94,8 @@ public class Library extends AppCompatActivity {
             }
         });
 
-        // Upload button click listener
         uploadButton.setOnClickListener(v -> filePicker.launch("application/pdf"));
 
-        // Submit button click listener to upload file
         submitButton.setOnClickListener(v -> {
             fileName = fileNameInput.getText().toString();
             if (fileName != null && !fileName.isEmpty() && fileBase64 != null) {
@@ -114,7 +105,6 @@ public class Library extends AppCompatActivity {
             }
         });
 
-        // Load files from Firestore when activity starts
         loadFilesFromFirestore();
     }
 
@@ -127,7 +117,7 @@ public class Library extends AppCompatActivity {
             byteArrayOutputStream.write(buffer, 0, bytesRead);
         }
         byte[] fileBytes = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(fileBytes, Base64.NO_WRAP);  // Return Base64-encoded file
+        return Base64.encodeToString(fileBytes, Base64.NO_WRAP);
     }
 
     private void uploadToFirestore(String base64, String fileName) {
@@ -135,40 +125,33 @@ public class Library extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
         if (user == null) {
-            // Handle the case where the user is not logged in
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String uid = user.getUid();
 
-        // Query Firestore to get the user's name from the "users" collection
         firestoreDb.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String uploaderName = documentSnapshot.getString("name");
                         if (uploaderName == null || uploaderName.isEmpty()) {
-                            uploaderName = user.getEmail(); // Fallback to email if name is not set
+                            uploaderName = user.getEmail();
                         }
 
-                        // Generate a unique file ID
                         String uniqueFileId = UUID.randomUUID().toString();
 
-                        // Upload the file metadata to the "library" collection
                         firestoreDb.collection("library").document(uniqueFileId)
-                                .set(new LibraryFile(base64, uid, uploaderName, fileName))  // Upload file metadata to Firestore
+                                .set(new LibraryFile(base64, uid, uploaderName, fileName))
                                 .addOnSuccessListener(aVoid -> {
                                     progressBar.setVisibility(View.GONE);
                                     Toast.makeText(this, "File uploaded successfully!", Toast.LENGTH_SHORT).show();
 
-                                    // Increment user points after successful upload
                                     incrementUserPoints(uid);
 
-                                    // Reload the files to reflect the new upload
                                     loadFilesFromFirestore();
 
-                                    // Reset UI for further uploads
                                     fileNameInput.setText("");
                                     fileNameInput.setVisibility(View.GONE);
                                     submitButton.setVisibility(View.GONE);
@@ -207,7 +190,7 @@ public class Library extends AppCompatActivity {
                         }
                         fileList.clear();
                         fileList.addAll(files);
-                        adapter.notifyDataSetChanged(); // Notify the adapter to refresh the RecyclerView
+                        adapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(this, "Failed to load files.", Toast.LENGTH_SHORT).show();
                     }
@@ -224,15 +207,13 @@ public class Library extends AppCompatActivity {
         Button closeButton = dialog.findViewById(R.id.buttonClose);
 
         try {
-            // Save decodedBytes to a temporary file
             File tempFile = new File(getCacheDir(), "temp_preview.pdf");
             FileOutputStream fos = new FileOutputStream(tempFile);
             fos.write(decodedBytes);
             fos.close();
 
-            // Render PDF
             PdfRenderer pdfRenderer = new PdfRenderer(ParcelFileDescriptor.open(tempFile, ParcelFileDescriptor.MODE_READ_ONLY));
-            int pageCount = pdfRenderer.getPageCount(); // Get the total number of pages in the PDF
+            int pageCount = pdfRenderer.getPageCount();
 
             for (int i = 0; i < pageCount; i++) {
                 PdfRenderer.Page page = pdfRenderer.openPage(i);

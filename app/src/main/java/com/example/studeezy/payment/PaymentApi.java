@@ -1,4 +1,4 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

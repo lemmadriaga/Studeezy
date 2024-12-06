@@ -1,9 +1,10 @@
-package com.example.studeezy;
+package com.example.studeezy.payment;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
+
     private static final String BASE_URL = "https://api.paymongo.com/";
 
     private static Retrofit retrofit;
