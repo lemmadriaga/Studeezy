@@ -1,5 +1,5 @@
 
-# Studeezy
+# Studeezy ![Studeezy Logo](app/src/main/res/drawable/logo2.png)
 
 **Make Studying Easy with Studeezy** – A platform dedicated to providing easy access to curriculum-aligned study resources, helping students stay ahead in their courses.
 
