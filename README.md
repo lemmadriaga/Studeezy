@@ -21,6 +21,7 @@ Studeezy was created to help freshmen and continuing students who find it challe
 
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/1.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/2.png)
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/5.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/3.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/4.png)
 
