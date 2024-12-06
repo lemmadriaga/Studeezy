@@ -1,5 +1,5 @@
 
-# Studeezy <img src="app/src/main/res/drawable/logo2.png" alt="Studeezy Logo" width="200"/>
+# Studeezy <img src="app/src/main/res/drawable/logo2.png" alt="Studeezy Logo" width="32"/>
 
 **Make Studying Easy with Studeezy** – A platform dedicated to providing easy access to curriculum-aligned study resources, helping students stay ahead in their courses.
 
