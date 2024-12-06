@@ -11,6 +11,18 @@ Studeezy was created to help freshmen and continuing students who find it challe
 
 ---
 
+## Business Model
+
+### Freemium Model:
+- **Free Tier**: Users can download up to 5 resources per month for free.
+- **Premium Access**: ₱150/month grants unlimited access to all available resources.
+
+### Incentive Program:
+- **Content Rewards**: Users earn a fee for uploading high-quality, approved content.
+- **Referral Program**: Invite friends and earn additional benefits such as free downloads or discounts.
+
+---
+
 ## Features
 
 ### Key Features:
@@ -21,20 +33,9 @@ Studeezy was created to help freshmen and continuing students who find it challe
 
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/1.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/2.png)
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/5.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/3.png)
 ![Studeezy Logo](app/src/main/res/drawable/Screenshot/4.png)
-
----
-
-## Business Model
-
-### Freemium Model:
-- **Free Tier**: Users can download up to 5 resources per month for free.
-- **Premium Access**: ₱150/month grants unlimited access to all available resources.
-
-### Incentive Program:
-- **Content Rewards**: Users earn a fee for uploading high-quality, approved content.
-- **Referral Program**: Invite friends and earn additional benefits such as free downloads or discounts.
 
 ---
 
