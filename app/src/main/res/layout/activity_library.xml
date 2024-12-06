@@ -1,0 +1,95 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <!-- Upload Button -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:strokeWidth="2dp"
+        android:backgroundTint="#F9E21D"
+        app:strokeColor="@color/black">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="App Logo"
+            android:src="@drawable/logo"
+            android:padding="8dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Library | Free Resources"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click the file name for 1-2 pages preview"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/upload_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload PDF"
+        android:backgroundTint="@color/black"
+        android:textColor="#F9E21D" />
+
+    <!-- File Name Input -->
+    <EditText
+        android:id="@+id/file_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter file name"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit File"
+        android:visibility="gone"
+        android:backgroundTint="@color/black"
+        android:textColor="#F9E21D"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    </LinearLayout>
+</ScrollView>

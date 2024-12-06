@@ -36,6 +36,8 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
         holder.textViewFileName.setText(fileModel.getFileName());
 
         holder.buttonDownload.setOnClickListener(v -> onFileClickListener.onFileClick(fileModel));
+
+        holder.textViewFileName.setOnClickListener(v -> onFileClickListener.onFileNameClick(fileModel));
     }
 
     @Override
@@ -56,5 +58,6 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
 
     public interface OnFileClickListener {
         void onFileClick(FileModel fileModel);
+        void onFileNameClick(FileModel fileModel);
     }
 }

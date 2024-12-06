@@ -45,6 +45,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
 
     implementation(libs.gson)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

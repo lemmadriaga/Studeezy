@@ -94,6 +94,7 @@ public class SignUp extends AppCompatActivity {
         userMap.put("created_at", System.currentTimeMillis());
         userMap.put("hasPremium", false);
         userMap.put("role", "user");
+        userMap.put("downloadCount", 0);
 
         firestore.collection("users").document(userId).set(userMap)
                 .addOnSuccessListener(aVoid -> {

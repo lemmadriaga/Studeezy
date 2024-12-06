@@ -46,8 +46,6 @@
         android:layout_height="match_parent"
         android:divider="@color/gray"
         android:dividerHeight="1dp"
-        android:indicatorStart="-1dp"
-        android:indicatorEnd="50dp"
         android:padding="8dp"
         android:background="@drawable/listview_background"
         android:scrollbarStyle="outsideOverlay"

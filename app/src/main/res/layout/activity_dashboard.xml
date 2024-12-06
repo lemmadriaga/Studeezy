@@ -9,7 +9,8 @@
     android:background="@color/white"
     tools:context=".userDashboard.Dashboard">
 
-        <androidx.cardview.widget.CardView
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,11 +18,13 @@
         app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_bottom_corners"
             android:paddingBottom="20dp">
+
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
@@ -37,6 +40,8 @@
                 android:onClick="onProfilePictureClick" />
 
 
+
+
             <TextView
                 android:id="@+id/textViewGreeting"
                 android:layout_width="wrap_content"
@@ -50,12 +55,48 @@
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintTop_toTopOf="@id/imageView" />
 
+
+
+
+            <LinearLayout
+                android:id="@+id/pointsSection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:paddingLeft="22dp"
+                app:layout_constraintTop_toBottomOf="@id/imageView"
+                tools:layout_editor_absoluteX="2dp">
+
+
+                <TextView
+                    android:id="@+id/textViewPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Points: 0"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/btn_redeem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/black"
+                    android:text="Redeem"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/textViewHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="52dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Select Your Campus"
@@ -65,6 +106,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView" />
+
 
             <ImageView
                 android:id="@+id/logoImage"
@@ -77,10 +119,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardPremiumStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -92,12 +136,13 @@
         app:layout_constraintTop_toBottomOf="@id/headerSection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"> 
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
+
 
             <TextView
                 android:id="@+id/textPremiumTitle"
@@ -123,12 +168,13 @@
                 android:textColor="@color/black"
                 android:visibility="gone" />
 
+
             <TextView
                 android:id="@+id/textPremiumBenefits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsreg"
-                android:text="Enjoy unlimited access to premium features like:\n\n• Download unlimited modules\n• Access exclusive content\n• Priority support"
+                android:text="Don’t limit your learning—enjoy access to endless resources!"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/gray"
@@ -136,15 +182,14 @@
                 android:gravity="center"
                 android:visibility="gone" />
 
-
-                        <com.google.android.material.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonUpgradeToPremium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
-                android:layout_marginTop="12dp"
-                android:textSize="20sp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
                 android:text="Upgrade to Premium"
                 android:backgroundTint="@color/black"
                 android:textColor="@color/white"
@@ -152,8 +197,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -185,7 +229,8 @@
             android:textColorHint="@color/gray" />
     </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+
+    <TextView
         android:id="@+id/textViewCampusListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -198,7 +243,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearch" />
 
-        <ListView
+
+    <ListView
         android:id="@+id/campusListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -209,7 +255,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewCampusListTitle" />
 
-        <LinearLayout
+
+    <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -217,9 +264,48 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:weightSum="5">
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_calculator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsreg"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_baseline_calculate_24"
+            app:iconGravity="textStart"
+            app:iconPadding="3dp"
+            app:iconTint="@color/white" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_free_books"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#F9E21D"
+            android:padding="12dp"
+            android:fontFamily="@font/poppinsreg"
+            android:textColor="@color/black"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_baseline_library_books_24"
+            app:iconGravity="textStart"
+            app:iconPadding="3dp"
+            app:iconTint="@color/black" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_payment"
@@ -227,11 +313,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppinsreg"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
             android:backgroundTint="@color/black"
             android:padding="12dp"
-            android:text="Payment"
-            android:textColor="#F9E21D"
-            app:cornerRadius="8dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_baseline_payment_24"
+            app:iconGravity="textStart"
+            app:iconPadding="3dp"
+            app:iconTint="@color/white" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_upload"
@@ -242,21 +333,29 @@
             android:backgroundTint="#F9E21D"
             android:padding="12dp"
             android:fontFamily="@font/poppinsreg"
-            android:text="Upload"
             android:textColor="@color/black"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_baseline_upload_24"
+            app:iconGravity="textStart"
+            app:iconPadding="3dp"
+            app:iconTint="@color/black" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_signout"
             android:layout_width="0dp"
-            android:fontFamily="@font/poppinsreg"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:backgroundTint="@color/black"
             android:padding="12dp"
-            android:text="Sign Out"
-            android:textColor="#F9E21D"
-            app:cornerRadius="8dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_baseline_logout_24"
+            app:iconGravity="textStart"
+            app:iconPadding="3dp"
+            app:iconTint="@color/white" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

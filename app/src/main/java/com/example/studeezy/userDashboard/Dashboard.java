@@ -4,17 +4,21 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.net.Uri;
 
+import com.example.studeezy.calculator.Calculator;
+import com.example.studeezy.library.Library;
 import com.google.android.gms.common.util.IOUtils;
 
 
@@ -47,7 +51,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity {
     private TextView textPremiumStatus, textViewGreeting;
-    private MaterialButton buttonSignOut, buttonUpload, buttonPayment, buttonUpgradeToPremium;
+    private MaterialButton buttonSignOut, buttonUpload, buttonPayment, buttonUpgradeToPremium, buttonCalculator, buttonLibrary;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
     private ListView campusListView;
@@ -58,7 +62,8 @@ public class Dashboard extends AppCompatActivity {
     private androidx.cardview.widget.CardView cardPremiumStatus;
     private static final int PICK_IMAGE_REQUEST = 1;
     private TextView textPremiumBenefits;
-
+    private TextView textViewPoints;
+    private Button buttonRedeem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,20 +90,21 @@ public class Dashboard extends AppCompatActivity {
         loadUserData();
         loadCampuses();
         checkPremiumStatus();
-        initializeViews();
         loadProfilePicture();
-
-
     }
 
 
     private void initializeViews() {
 
         textPremiumStatus = findViewById(R.id.textPremiumStatus);
+        textViewPoints = findViewById(R.id.textViewPoints);
         textPremiumBenefits = findViewById(R.id.textPremiumBenefits);
         buttonUpgradeToPremium = findViewById(R.id.buttonUpgradeToPremium);
+        buttonCalculator = findViewById(R.id.btn_calculator);
+        buttonLibrary = findViewById(R.id.btn_free_books);
         buttonSignOut = findViewById(R.id.btn_signout);
         buttonUpload = findViewById(R.id.btn_upload);
+        buttonRedeem = findViewById(R.id.btn_redeem);
         buttonPayment = findViewById(R.id.btn_payment);
         textViewGreeting = findViewById(R.id.textViewGreeting);
         campusListView = findViewById(R.id.campusListView);
@@ -137,9 +143,22 @@ public class Dashboard extends AppCompatActivity {
             startActivity(intent);
         });
 
+        buttonCalculator.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Calculator.class);
+            startActivity(intent);
+        });
+
+        buttonLibrary.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Library.class);
+            startActivity(intent);
+        });
 
         buttonUpgradeToPremium.setOnClickListener(v -> {
             startActivity(new Intent(Dashboard.this, PaymentActivity.class));
+        });
+
+        buttonRedeem.setOnClickListener(v -> {
+            redeemPremium();
         });
     }
 
@@ -159,32 +178,39 @@ public class Dashboard extends AppCompatActivity {
     }
 
     private void loadUserData() {
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String name = dataSnapshot.child("name").getValue(String.class);
-                    Log.d("Dashboard", "Retrieved name: " + name);
-                    if (name != null) {
-                        textViewGreeting.setText("Hi, " + name + "!");
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        String userId = FirebaseAuth.getInstance().getUid();
+
+        if (userId != null) {
+            DocumentReference userRef = firestore.collection("users").document(userId);
+
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    DocumentSnapshot document = task.getResult();
+
+                    if (document.exists()) {
+                        // Fetch and display name
+                        String name = document.getString("name");
+                        textViewGreeting.setText(name != null ? "Hi, " + name + "!" : "Hi, User!");
+
+                        // Fetch and display points
+                        Long points = document.getLong("points");
+                        if (points != null) {
+                            textViewPoints.setText("Points: " + points);
+                        } else {
+                            textViewPoints.setText("Points: 0");
+                        }
                     } else {
+                        Log.e("Dashboard", "User document does not exist");
                         textViewGreeting.setText("Hi, User!");
-                        Log.e("Dashboard", "Name is null");
+                        textViewPoints.setText("Points: 0");
                     }
                 } else {
-                    Log.e("Dashboard", "DataSnapshot does not exist");
+                    Log.e("Dashboard", "Error fetching user data: " + task.getException());
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e("Dashboard", "Error loading user data: " + error.getMessage());
-            }
-        });
+            });
+        }
     }
-
-
-
 
     private void loadCampuses() {
         DatabaseReference campusRef = FirebaseDatabase.getInstance().getReference("campuses");
@@ -211,6 +237,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
+
     private void syncNameFromFirestoreToRealtimeDatabase() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         FirebaseDatabase realtimeDatabase = FirebaseDatabase.getInstance();
@@ -257,7 +284,6 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
-
 
     private void checkPremiumStatus() {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -307,7 +333,6 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
-
 
     private void loadProfilePicture() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -391,6 +416,77 @@ public class Dashboard extends AppCompatActivity {
         }
     }
 
+    private void redeemPremium() {
+        // Step 1: Check if user has premium status in Realtime Database
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Boolean hasPremium = dataSnapshot.child("hasPremium").getValue(Boolean.class);
 
+                    if (hasPremium != null && hasPremium) {
+                        // Step 2: If already a premium user, show a toast
+                        Toast.makeText(Dashboard.this, "There is an existing subscription", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Step 3: If not premium, check points in Firestore
+                        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                        String userId = FirebaseAuth.getInstance().getUid();
 
+                        if (userId != null) {
+                            DocumentReference userDocRef = firestore.collection("users").document(userId);
+
+                            userDocRef.get().addOnCompleteListener(task -> {
+                                if (task.isSuccessful() && task.getResult() != null) {
+                                    DocumentSnapshot document = task.getResult();
+
+                                    if (document.exists()) {
+                                        Long points = document.getLong("points");
+
+                                        if (points != null && points >= 15) {
+                                            // Step 4: Update Realtime Database with premium status and expiration date
+                                            long expirationDate = System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000); // 30 days from now
+                                            userRef.child("hasPremium").setValue(true);
+                                            userRef.child("expirationDate").setValue(expirationDate)
+                                                    .addOnCompleteListener(updateTask -> {
+                                                        if (updateTask.isSuccessful()) {
+                                                            Toast.makeText(Dashboard.this, "Premium activated!", Toast.LENGTH_SHORT).show();
+                                                            // Refresh the activity
+                                                            userDocRef.update("points", 0);
+                                                            restartActivity();
+                                                        } else {
+                                                            Toast.makeText(Dashboard.this, "Failed to update premium status.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        } else {
+                                            // Step 5: Set points to 0 and refresh the activity
+                                            Toast.makeText(Dashboard.this, "Not enough points.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(Dashboard.this, "User data not found in Firestore.", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(Dashboard.this, "Failed to fetch user data from Firestore.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    Toast.makeText(Dashboard.this, "User data not found in Realtime Database.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("Dashboard", "Error checking premium status: " + error.getMessage());
+            }
+        });
+    }
+
+    private void restartActivity() {
+        new Handler().postDelayed(() -> {
+            Intent intent = getIntent();
+            finish();  // Close the current activity
+            startActivity(intent);  // Restart the current activity
+        }, 2000);  // Delay for 2000 milliseconds (2 seconds)
+    }
 }
