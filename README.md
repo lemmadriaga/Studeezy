@@ -1,19 +1,7 @@
 # Make Studying Easy with Studeezy
-
-![Studeezy Logo](app/src/main/res/drawable/logo2.png)
-
 A platform dedicated to providing easy access to curriculum-aligned study resources, helping students stay ahead in their courses.
 
----
-
-## Table of Contents
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Getting Started](#getting-started)
-4. [Usage](#usage)
-5. [Business Model](#business-model)
-6. [Future Plans](#future-plans)
-7. [Pull and Run in Android Studio](#pull-and-run-in-android-studio)
+![Studeezy Logo](app/src/main/res/drawable/logo2.png)
 
 ---
 
@@ -31,22 +19,10 @@ Studeezy was created to help freshmen and continuing students who find it challe
 
 ---
 
-## Getting Started
-
-Follow these steps to navigate and utilize the platform:
-
-1. **Sign Up/Login**: Register or log in to create your personalized profile.
-2. **Select School and Program**: Choose your school and program to access relevant content.
-3. **Browse and Upload Resources**: Navigate through available study materials or contribute your own.
-4. **Download or Share**: Access your resources and share them with peers as needed.
-
----
-
-## Usage
-
-### How to Use Studeezy:
-- **Search for Resources**: Use the search bar to find specific study guides, notes, or reviewers.
-- **Upload Content**: Click on the “Upload” button and follow the instructions to add your materials.
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/1.png)
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/2.png)
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/3.png)
+![Studeezy Logo](app/src/main/res/drawable/Screenshot/4.png)
 
 ---
 
@@ -66,7 +42,7 @@ Follow these steps to navigate and utilize the platform:
 
 - **Collaborations with Schools and Universities**: Partner with educational institutions to preload curriculum materials for various programs.
 - **Interactive Features**: Add tools for creating study groups, live Q&A, and interactive forums.
-- **Expanding Content**: Include video tutorials, quizzes, and other learning tools.
+- **Daily Use Points** Add internal tools that users can access upon logging in, where they earn points for using these tools.
 
 ---
 
@@ -86,6 +62,7 @@ To pull and run the Studeezy project in Android Studio, follow these steps:
 
 ### 3. Sync the Project
 - Once the project is open, Android Studio may prompt you to sync the project with Gradle. Click **Sync Now** to download necessary dependencies and libraries.
+- **Firebase Integration**: Since Firebase is already set up in the project, syncing will automatically link the app to Firebase services, including Realtime Database, Authentication, etc.
 
 ### 4. Set Up the Emulator or Device
 - Ensure you have an Android emulator or a physical device connected.
@@ -99,3 +76,4 @@ To pull and run the Studeezy project in Android Studio, follow these steps:
 ### 6. Troubleshooting (if needed)
 - If there are any issues with Gradle sync or dependencies, you may need to check the **build.gradle** files and ensure that all necessary libraries are included.
 - You can also try **File > Invalidate Caches / Restart** if the IDE behaves unexpectedly.
+- If Firebase-related services (such as database connections or authentication) are not working, ensure that the `google-services.json` file is correctly placed in the `app/` folder of the project.
