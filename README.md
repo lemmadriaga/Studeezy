@@ -85,3 +85,5 @@ To pull and run the Studeezy project in Android Studio, follow these steps:
 **Lemuel Madriaga** [CS3101]<br>
 **Clarence Zamora** [CS3102]<br>
 **James Michael Magnaye** [CS3102]
+
+Some commits from the old repository are not shown here due to unforeseen issues.
